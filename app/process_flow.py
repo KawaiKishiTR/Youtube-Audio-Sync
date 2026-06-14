@@ -24,6 +24,10 @@ def main_flow():
 
 def single_playlist_flow(ctx:flow_context):
     for media in ctx.playlist.info.entries:
+        if ctx.data_manager.get_media(media):
+            print(f"[MEDIA] {media.id} found. Skipping")
+            continue
+        print(f"[MEDIA] {media.id} not found. Downloading")
         ctx.media = media
         single_media_flow(ctx)
 
@@ -35,12 +39,5 @@ def single_media_flow(ctx:flow_context):
         ctx.data_manager.get_or_create_playlist(ctx.playlist)
     )
 
-
-def try_that(func:Callable, ctx:flow_context, *args, **kwargs) -> Any:
-    try:
-        func(*args, **kwargs)
-    except Exception as e:
-        print(f"HATA: {e}")
-        print(f"PAYLOAD: PL:{ctx.playlist.id} and VD:{ctx.media.id}")
 
 

@@ -154,9 +154,9 @@ class yt_playlist:
 JS_RUNTIME = os.environ.get("JS_RUNTIME", None)
 if JS_RUNTIME is not None and Path(JS_RUNTIME).exists():
     runtime_dict = {'node':{'path':str(Path(JS_RUNTIME))}, 'deno':{'path':None}}
-    yt_video._info_opts["js_runtimes"] = runtime_dict
+    yt_video.info_opts["js_runtimes"] = runtime_dict
     yt_video._download_opts["js_runtimes"] = runtime_dict
-    yt_playlist._info_opts["js_runtimes"] = runtime_dict
+    yt_playlist.info_opts["js_runtimes"] = runtime_dict
 
 FFMPEG_LOCATION = os.environ.get("FFMPEG_LOCATION", None)
 if FFMPEG_LOCATION is not None and Path(FFMPEG_LOCATION).exists():
