@@ -1,3 +1,5 @@
+import json
+import subprocess
 
 
 def type_check_raise(obj, *cls):
@@ -11,3 +13,10 @@ def sanitize_string(value: str) -> str:
     for char in ['/', '\\', '?', '%', '*', ':', '|', '"', '<', '>', '.']:
         value = value.replace(char, '_')
     return value.strip()
+
+def run_process(args:list[str], return_json:bool = False):
+    if not return_json:
+        subprocess.run(args, check=True)
+        return
+    result = subprocess.run(args, text=True, check=True, capture_output=True)
+    return json.loads(result.stdout)
