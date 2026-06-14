@@ -161,3 +161,8 @@ if JS_RUNTIME is not None and Path(JS_RUNTIME).exists():
 FFMPEG_LOCATION = os.environ.get("FFMPEG_LOCATION", None)
 if FFMPEG_LOCATION is not None and Path(FFMPEG_LOCATION).exists():
     yt_video._download_opts['ffmpeg_location'] = str(Path(FFMPEG_LOCATION))
+
+print(yt_playlist.info_opts)
+
+print(yt_video.info_opts)
+print(yt_video._download_opts)
