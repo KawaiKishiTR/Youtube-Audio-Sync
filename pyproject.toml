@@ -5,5 +5,8 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "argparse>=1.4.0",
+    "dotenv>=0.9.9",
+    "sqlalchemy>=2.0.50",
     "yt-dlp>=2026.6.9",
 ]

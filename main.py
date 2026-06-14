@@ -1,5 +1,14 @@
+from dotenv import load_dotenv
+load_dotenv()
+
+from app.main import main as app_main
+from app.database.database import init_db
+
+
+
 def main():
-    print("Hello from youtube-audio-sync!")
+    init_db()
+    app_main()
 
 
 if __name__ == "__main__":
