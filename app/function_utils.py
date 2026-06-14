@@ -14,9 +14,14 @@ def sanitize_string(value: str) -> str:
         value = value.replace(char, '_')
     return value.strip()
 
-def run_process(args:list[str], return_json:bool = False):
-    if not return_json:
-        subprocess.run(args, check=True)
-        return
-    result = subprocess.run(args, text=True, check=True, capture_output=True)
-    return json.loads(result.stdout)
+def run_process(args, return_json=False):
+    try:
+        if not return_json:
+            subprocess.run(args, check=True)
+            return
+        result = subprocess.run(args, text=True, check=True, capture_output=True)
+        return json.loads(result.stdout)
+    except subprocess.CalledProcessError as e:
+        print(f"\n[CRITICAL ERROR] Subprocess başarısız oldu! (Exit Code: {e.returncode})")
+        print(f"[STDERR] Asıl Hata Mesajı:\n{e.stderr}")
+        raise
